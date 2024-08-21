@@ -24,6 +24,10 @@ Date:
       <div>
         <!--Add v-for loop for homeworks and iterate data-->
         {{ homeworks.length }} homeworks:
+        <div v-for="(homework, index) in homeworks" :key="index">
+          Homework {{ index + 1 }}:
+          <input type="number" min="0" max="100" v-model="homeworks[index]" />
+          / 100
       </div>
       <button @click="addHomework()">Add homework</button>
 
