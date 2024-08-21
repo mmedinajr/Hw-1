@@ -20,6 +20,11 @@ Date:
         / 100
       </div>
       <!--Add the other assessments-->
+      <div>
+        Program Set:
+        <input type="number" min="0" max="100" v-model="assessments.prgmSet" />
+        / 100
+      </div>
 
       <div>
         <!--Add v-for loop for homeworks and iterate data-->
@@ -28,19 +33,18 @@ Date:
           Homework {{ index + 1 }}:
           <input type="number" min="0" max="100" v-model="homeworks[index]" />
           / 100
-      </div>
-      <button @click="addHomework()">Add homework</button>
+        </div>
+        </div>
+        
+          </div>
+          <button @click="addHomework()">Add homework</button>
+
+      
 
       <!--Add Test Assessments-->
       <div>
-        Test 1:
-        <input type="number" min="0" max="100" v-model="assessments.test1" />
-        / 100
-      </div>
-      <div>
-        Test 2:
-        <input type="number" min="0" max="100" v-model="assessments.test2" />
-        / 100
+
+        
       </div>
       
 
