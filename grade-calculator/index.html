@@ -28,6 +28,17 @@ Date:
       <button @click="addHomework()">Add homework</button>
 
       <!--Add Test Assessments-->
+      <div>
+        Test 1:
+        <input type="number" min="0" max="100" v-model="assessments.test1" />
+        / 100
+      </div>
+      <div>
+        Test 2:
+        <input type="number" min="0" max="100" v-model="assessments.test2" />
+        / 100
+      </div>
+      
 
       <div>Projected class grade: {{ calculatedGrade }}</div>
     </div>
