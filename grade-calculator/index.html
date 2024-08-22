@@ -1,184 +1,36 @@
-<!DOCTYPE html>
-<html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>CMPS3141 Grading Calculator</title>
-    <script src="index.js" type="module"></script>
-    <style>
-      body {
-        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-        background-color: #eceff1;
-        margin: 0;
-        padding: 0;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        height: 100vh;
-      }
+<!--CMPS3141-HCI - AS1-24S1
+Collaborators:
+Date:
+ -->
 
-      #grade_calc {
-        background-color: #ffffff;
-        border-radius: 10px;
-        padding: 30px;
-        box-shadow: 0 6px 18px rgba(0, 0, 0, 0.1);
-        max-width: 450px;
-        width: 100%;
-      }
-
-      #grade_calc h1 {
-        text-align: center;
-        color: #2e3d49;
-        font-size: 2em;
-        margin-bottom: 25px;
-        font-weight: bold;
-      }
-
-      .assessment {
-        margin-bottom: 20px;
-      }
-
-      .assessment label {
-        display: block;
-        font-weight: 600;
-        color: #607d8b;
-        margin-bottom: 10px;
-      }
-
-      .assessment input {
-        width: 100%;
-        padding: 10px;
-        border: 1px solid #cfd8dc;
-        border-radius: 6px;
-        font-size: 1.1em;
-        color: #2e3d49;
-        background-color: #f9f9f9;
-      }
-
-      .assessment input:focus {
-        border-color: #00bcd4;
-        background-color: #ffffff;
-      }
-
-      button {
-        width: 100%;
-        padding: 12px;
-        border: none;
-        border-radius: 6px;
-        background-color: #00bcd4;
-        color: white;
-        font-size: 1.1em;
-        cursor: pointer;
-        margin-top: 10px;
-      }
-
-      button:hover {
-        background-color: #008c9e;
-      }
-
-      #projected-grade {
-        text-align: center;
-        font-weight: bold;
-        color: #2e3d49;
-        margin-top: 30px;
-        font-size: 1.5em;
-      }
-
-      .assessment .add-homework-btn {
-        background-color: #607d8b;
-        margin-top: 10px;
-      }
-
-      .assessment .add-homework-btn:hover {
-        background-color: #455a64;
-      }
-    </style>
-  </head>
-  <body>
-    <div id="grade_calc">
-      <h1>Grading Calculator</h1>
-
-      <!-- Project Grade -->
-      <div class="assessment">
-        <label for="project">Project:</label>
-        <input
-          type="number"
-          id="project"
-          min="0"
-          max="100"
-          v-model="assessments.project"
-        />
-        / 100
-      </div>
-
-      <!-- Program Set Grade -->
-      <div class="assessment">
-        <label for="prgmSet">Program Set:</label>
-        <input
-          type="number"
-          id="prgmSet"
-          min="0"
-          max="100"
-          v-model="assessments.prgmSet"
-        />
-        / 100
-      </div>
-
-      <!-- Homework Grades -->
-      <div class="assessment">
-        <label>Homework Grades:</label>
-        <div v-for="(homework, index) in homeworks" :key="index">
-          <input
-            type="number"
-            min="0"
-            max="100"
-            v-model="homeworks[index]"
-            placeholder="Homework {{ index + 1 }}"
-          />
-        </div>
-        <button class="add-homework-btn" @click="addHomework()">Add Homework</button>
-      </div>
-
-      <!-- Test Grades -->
-      <div class="assessment">
-        <label for="test1">Test 1:</label>
-        <input
-          type="number"
-          id="test1"
-          min="0"
-          max="100"
-          v-model="assessments.Test1"
-        />
-        / 100
-      </div>
-      <div class="assessment">
-        <label for="test2">Test 2:</label>
-        <input
-          type="number"
-          id="test2"
-          min="0"
-          max="100"
-          v-model="assessments.Test2"
-        />
-        / 100
-      </div>
-
-      <!-- Final Exam Grade -->
-      <div class="assessment">
-        <label for="fexam">Final Exam:</label>
-        <input
-          type="number"
-          id="fexam"
-          min="0"
-          max="100"
-          v-model="assessments.FExam"
-        />
-        / 100
-      </div>
-
-      <!-- Display Projected Grade -->
-      <div id="projected-grade">Projected Class Grade: {{ calculatedGrade }}</div>
-    </div>
-  </body>
-</html>
+ <!DOCTYPE html>
+ <html lang="en">
+   <head>
+     <meta charset="UTF-8" />
+     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+     <title>Edit this with title of exercise</title>
+     <script src="index.js" type="module"></script>
+   </head>
+   <body>
+     <div id="grade_calc">
+       <div>
+         Project:
+         <input type="number" min="0" max="100" v-model="assessments.project" />
+         / 100
+       </div>
+       <!--Add the other assessments-->
+ 
+       <div>
+         <!--Add v-for loop for homeworks and iterate data-->
+         {{ homeworks.length }} homeworks:
+       </div>
+       <button @click="addHomework()">Add homework</button>
+ 
+       <!--Add Test Assessments-->
+ 
+       <div>Projected class grade: {{ calculatedGrade }}</div>
+     </div>
+   </body>
+ </html>
+ 
