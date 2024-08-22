@@ -1,73 +1,57 @@
-<!--CMPS3141-HCI - AS1-24S1
-Collaborators:
-Date:
- -->
-
 <!DOCTYPE html>
-<html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Edit this with title of exercise</title>
-    <script src="index.js" type="module"></script>
-    <script src="https://mavue.mavo.io/mavue.js" type="module"></script>
-
-  </head>
-  <body>
-    <div id="grade_calc">
-      <div>
-        Project:
-        <input type="number" min="0" max="100" v-model="assessments.project" />
-        / 100
-      </div>
-      <!--Add the other assessments-->
-      <div>
-        Program Set:
-        <input type="number" min="0" max="100" v-model="assessments.prgmSet" />
-        / 100
-      </div>
-
-      <div>
-        <!--Add v-for loop for homeworks and iterate data-->
-        <div>
-          {{ homeworks.length }} homeworks:
-          <div v-for="(homework, index) in homeworks" :key="index">
-            Homework {{ index + 1 }}: 
-            <input type="number" min="0" max="100" v-model="homeworks[index]" /> / 100
-          </div>
-          <button @click="addHomework">Add homework</button>
+<html>
+<head>
+    <title>Vue.js Grade Calculator</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue@2"></script>
+</head>
+<body>
+    <div id="app">
+        <h1>Grade Calculator</h1>
+        
+        <div v-for="(grade, index) in grades" :key="index">
+            <label :for="'grade' + index">Grade {{ index + 1 }}:</label>
+            <input type="number" v-model.number="grades[index]" :id="'grade' + index" placeholder="Enter grade" />
         </div>
         
-        </div>
+        <button @click="addGrade">Add Grade</button>
+        <button @click="removeGrade">Remove Grade</button>
         
-          </div>
-          <button @click="addHomework()">Add homework</button>
-
-      
-
-      <!--Add Test Assessments-->
-      <div>
-
-        <div>
-          Test 1:
-          <input type="number" min="0" max="100" v-model="assessments.test1" />
-          / 100
-        </div>
-        <div>
-          Test 2:
-          <input type="number" min="0" max="100" v-model="assessments.test2" />
-          / 100
-        </div>
-      </div>
-      <div>
-        Final Exam:
-        <input type="number" min="0" max="100" v-model="assessments.FExam" />
-        / 100
-      </div>
-      
-
-      <div>Projected class grade: {{ calculatedGrade }}</div>
+        <h2>Average Grade: {{ averageGrade }}</h2>
+        <h2>Letter Grade: {{ letterGrade }}</h2>
     </div>
-  </body>
+
+    <script>
+        new Vue({
+            el: '#app',
+            data: {
+                grades: [0],
+            },
+            computed: {
+                averageGrade() {
+                    if (this.grades.length === 0) return 0;
+                    const sum = this.grades.reduce((acc, grade) => acc + grade, 0);
+                    return (sum / this.grades.length).toFixed(2);
+                },
+                letterGrade() {
+                    const avg = this.averageGrade;
+                    if (avg >= 90) return 'A';
+                    if (avg >= 80) return 'B';
+                    if (avg >= 70) return 'C';
+                    if (avg >= 60) return 'D';
+                    return 'F';
+                }
+            },
+            methods: {
+                addGrade() {
+                    this.grades.push(0);
+                },
+                removeGrade() {
+                    if (this.grades.length > 1) {
+                        this.grades.pop();
+                    }
+                }
+            }
+        });
+    </script>
+</body>
 </html>
