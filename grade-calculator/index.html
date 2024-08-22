@@ -1,57 +1,28 @@
-<!DOCTYPE html>
-<html>
-<head>
-    <title>Vue.js Grade Calculator</title>
-    <script src="https://cdn.jsdelivr.net/npm/vue@2"></script>
-</head>
-<body>
-    <div id="app">
-        <h1>Grade Calculator</h1>
-        
-        <div v-for="(grade, index) in grades" :key="index">
-            <label :for="'grade' + index">Grade {{ index + 1 }}:</label>
-            <input type="number" v-model.number="grades[index]" :id="'grade' + index" placeholder="Enter grade" />
-        </div>
-        
-        <button @click="addGrade">Add Grade</button>
-        <button @click="removeGrade">Remove Grade</button>
-        
-        <h2>Average Grade: {{ averageGrade }}</h2>
-        <h2>Letter Grade: {{ letterGrade }}</h2>
-    </div>
+<!--CMPS3141-HCI - AS1-24S1
+Collaborators:
+Date:
+-->
 
-    <script>
-        new Vue({
-            el: '#app',
-            data: {
-                grades: [0],
-            },
-            computed: {
-                averageGrade() {
-                    if (this.grades.length === 0) return 0;
-                    const sum = this.grades.reduce((acc, grade) => acc + grade, 0);
-                    return (sum / this.grades.length).toFixed(2);
-                },
-                letterGrade() {
-                    const avg = this.averageGrade;
-                    if (avg >= 90) return 'A';
-                    if (avg >= 80) return 'B';
-                    if (avg >= 70) return 'C';
-                    if (avg >= 60) return 'D';
-                    return 'F';
-                }
-            },
-            methods: {
-                addGrade() {
-                    this.grades.push(0);
-                },
-                removeGrade() {
-                    if (this.grades.length > 1) {
-                        this.grades.pop();
-                    }
-                }
-            }
-        });
-    </script>
-</body>
-</html>
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>CMPS3141 Grading Calculator</title>
+    <script src="index.js" type="module"></script>
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+        background-color: #f4f7f8;
+        margin: 0;
+        padding: 20px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+      }
+
+      #grade_calc {
+        background-color: #ffffff;
+
