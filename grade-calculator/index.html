@@ -9,26 +9,51 @@ Date:
      <meta charset="UTF-8" />
      <meta http-equiv="X-UA-Compatible" content="IE=edge" />
      <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-     <title>Edit this with title of exercise</title>
+     <title>CMPS3141 Grading Calculator</title>
      <script src="index.js" type="module"></script>
    </head>
    <body>
      <div id="grade_calc">
+       <!-- Project Grade -->
        <div>
-         Project:
+         Project Grade:
          <input type="number" min="0" max="100" v-model="assessments.project" />
          / 100
        </div>
-       <!--Add the other assessments-->
  
+       <!-- Homework Grades -->
        <div>
-         <!--Add v-for loop for homeworks and iterate data-->
          {{ homeworks.length }} homeworks:
+         <div v-for="(hw, index) in homeworks" :key="index">
+           Homework {{ index + 1 }}:
+           <input type="number" min="0" max="100" v-model="homeworks[index]" />
+           / 100
+         </div>
        </div>
        <button @click="addHomework()">Add homework</button>
  
-       <!--Add Test Assessments-->
+       <!-- Program Set Grade -->
+       <div>
+         Program Set Grade:
+         <input type="number" min="0" max="100" v-model="assessments.prgmSet" />
+         / 100
+       </div>
  
+       <!-- Test Grade -->
+       <div>
+         Test Grade:
+         <input type="number" min="0" max="100" v-model="assessments.Test" />
+         / 100
+       </div>
+ 
+       <!-- Final Exam Grade -->
+       <div>
+         Final Exam Grade:
+         <input type="number" min="0" max="100" v-model="assessments.FExam" />
+         / 100
+       </div>
+ 
+       <!-- Projected Class Grade -->
        <div>Projected class grade: {{ calculatedGrade }}</div>
      </div>
    </body>
