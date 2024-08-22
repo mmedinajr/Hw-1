@@ -25,4 +25,153 @@ Date:
 
       #grade_calc {
         background-color: #ffffff;
+        border-radius: 8px;
+        padding: 20px;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        max-width: 400px;
+        width: 100%;
+      }
 
+      #grade_calc h1 {
+        text-align: center;
+        color: #333333;
+        margin-bottom: 20px;
+        font-size: 1.5em;
+      }
+
+      .assessment {
+        margin-bottom: 15px;
+      }
+
+      .assessment label {
+        display: block;
+        font-weight: bold;
+        color: #555555;
+        margin-bottom: 5px;
+      }
+
+      .assessment input {
+        width: calc(100% - 10px);
+        padding: 8px;
+        border: 1px solid #cccccc;
+        border-radius: 4px;
+        font-size: 1em;
+        outline: none;
+      }
+
+      .assessment input:focus {
+        border-color: #66afe9;
+      }
+
+      button {
+        width: 100%;
+        padding: 10px;
+        border: none;
+        border-radius: 4px;
+        background-color: #5cb85c;
+        color: white;
+        font-size: 1em;
+        cursor: pointer;
+        margin-bottom: 10px;
+      }
+
+      button:hover {
+        background-color: #4cae4c;
+      }
+
+      #projected-grade {
+        text-align: center;
+        font-weight: bold;
+        color: #333333;
+        margin-top: 20px;
+        font-size: 1.2em;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="grade_calc">
+      <h1>CMPS3141 Grading Calculator</h1>
+
+      <!-- Project Grade -->
+      <div class="assessment">
+        <label for="project">Project:</label>
+        <input
+          type="number"
+          id="project"
+          min="0"
+          max="100"
+          v-model="assessments.project"
+        />
+        / 100
+      </div>
+
+      <!-- Program Set Grade -->
+      <div class="assessment">
+        <label for="prgmSet">Program Set:</label>
+        <input
+          type="number"
+          id="prgmSet"
+          min="0"
+          max="100"
+          v-model="assessments.prgmSet"
+        />
+        / 100
+      </div>
+
+      <!-- Homework Grades -->
+      <div class="assessment">
+        <label>Homework Grades:</label>
+        <div v-for="(homework, index) in homeworks" :key="index">
+          <input
+            type="number"
+            min="0"
+            max="100"
+            v-model="homeworks[index]"
+            placeholder="Homework {{ index + 1 }}"
+          />
+        </div>
+        <button @click="addHomework()">Add Homework</button>
+      </div>
+
+      <!-- Test Grades -->
+      <div class="assessment">
+        <label for="test1">Test 1:</label>
+        <input
+          type="number"
+          id="test1"
+          min="0"
+          max="100"
+          v-model="assessments.Test1"
+        />
+        / 100
+      </div>
+      <div class="assessment">
+        <label for="test2">Test 2:</label>
+        <input
+          type="number"
+          id="test2"
+          min="0"
+          max="100"
+          v-model="assessments.Test2"
+        />
+        / 100
+      </div>
+
+      <!-- Final Exam Grade -->
+      <div class="assessment">
+        <label for="fexam">Final Exam:</label>
+        <input
+          type="number"
+          id="fexam"
+          min="0"
+          max="100"
+          v-model="assessments.FExam"
+        />
+        / 100
+      </div>
+
+      <!-- Display Projected Grade -->
+      <div id="projected-grade">Projected Class Grade: {{ calculatedGrade }}</div>
+    </div>
+  </body>
+</html>
