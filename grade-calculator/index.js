@@ -12,9 +12,10 @@ let app = createApp(
         prgmSet: null,
         Test: null,
         FExam: null,
-      },
-      homeworks: [null],
+        homeworks: [null],
       Tests: [null],
+      },
+      
     },
 
     computed: {
