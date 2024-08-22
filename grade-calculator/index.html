@@ -1,8 +1,3 @@
-<!--CMPS3141-HCI - AS1-24S1
-Collaborators:
-Date:
--->
-
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -13,10 +8,10 @@ Date:
     <script src="index.js" type="module"></script>
     <style>
       body {
-        font-family: Arial, sans-serif;
-        background-color: #f4f7f8;
+        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        background-color: #eceff1;
         margin: 0;
-        padding: 20px;
+        padding: 0;
         display: flex;
         justify-content: center;
         align-items: center;
@@ -25,72 +20,84 @@ Date:
 
       #grade_calc {
         background-color: #ffffff;
-        border-radius: 8px;
-        padding: 20px;
-        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-        max-width: 400px;
+        border-radius: 10px;
+        padding: 30px;
+        box-shadow: 0 6px 18px rgba(0, 0, 0, 0.1);
+        max-width: 450px;
         width: 100%;
       }
 
       #grade_calc h1 {
         text-align: center;
-        color: #333333;
-        margin-bottom: 20px;
-        font-size: 1.5em;
+        color: #2e3d49;
+        font-size: 2em;
+        margin-bottom: 25px;
+        font-weight: bold;
       }
 
       .assessment {
-        margin-bottom: 15px;
+        margin-bottom: 20px;
       }
 
       .assessment label {
         display: block;
-        font-weight: bold;
-        color: #555555;
-        margin-bottom: 5px;
+        font-weight: 600;
+        color: #607d8b;
+        margin-bottom: 10px;
       }
 
       .assessment input {
-        width: calc(100% - 10px);
-        padding: 8px;
-        border: 1px solid #cccccc;
-        border-radius: 4px;
-        font-size: 1em;
-        outline: none;
+        width: 100%;
+        padding: 10px;
+        border: 1px solid #cfd8dc;
+        border-radius: 6px;
+        font-size: 1.1em;
+        color: #2e3d49;
+        background-color: #f9f9f9;
       }
 
       .assessment input:focus {
-        border-color: #66afe9;
+        border-color: #00bcd4;
+        background-color: #ffffff;
       }
 
       button {
         width: 100%;
-        padding: 10px;
+        padding: 12px;
         border: none;
-        border-radius: 4px;
-        background-color: #5cb85c;
+        border-radius: 6px;
+        background-color: #00bcd4;
         color: white;
-        font-size: 1em;
+        font-size: 1.1em;
         cursor: pointer;
-        margin-bottom: 10px;
+        margin-top: 10px;
       }
 
       button:hover {
-        background-color: #4cae4c;
+        background-color: #008c9e;
       }
 
       #projected-grade {
         text-align: center;
         font-weight: bold;
-        color: #333333;
-        margin-top: 20px;
-        font-size: 1.2em;
+        color: #2e3d49;
+        margin-top: 30px;
+        font-size: 1.5em;
+      }
+
+      .assessment .add-homework-btn {
+        background-color: #607d8b;
+        margin-top: 10px;
+      }
+
+      .assessment .add-homework-btn:hover {
+        background-color: #455a64;
       }
     </style>
   </head>
   <body>
     <div id="grade_calc">
-      <h1>CMPS3141 Grading Calculator</h1>
+      <h1>Grading Calculator</h1>
 
       <!-- Project Grade -->
       <div class="assessment">
@@ -130,7 +137,7 @@ Date:
             placeholder="Homework {{ index + 1 }}"
           />
         </div>
-        <button @click="addHomework()">Add Homework</button>
+        <button class="add-homework-btn" @click="addHomework()">Add Homework</button>
       </div>
 
       <!-- Test Grades -->
