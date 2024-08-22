@@ -33,7 +33,8 @@ Date:
         <div>
           {{ homeworks.length }} homeworks:
           <div v-for="(homework, index) in homeworks" :key="index">
-            Homework {{ index + 1 }}: <input type="number" min="0" max="100" v-model="homeworks[index]" /> / 100
+            Homework {{ index + 1 }}: 
+            <input type="number" min="0" max="100" v-model="homeworks[index]" /> / 100
           </div>
           <button @click="addHomework">Add homework</button>
         </div>
@@ -58,6 +59,11 @@ Date:
           <input type="number" min="0" max="100" v-model="assessments.test2" />
           / 100
         </div>
+      </div>
+      <div>
+        Final Exam:
+        <input type="number" min="0" max="100" v-model="assessments.FExam" />
+        / 100
       </div>
       
 
