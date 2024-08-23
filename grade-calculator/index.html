@@ -1,104 +1,35 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Minimalist Grading Calculator</title>
-    <script src="index.js" type="module"></script>
-  </head>
-  <body>
-    <div id="grade_calc">
-      <h1>Calculate Overall Grade</h1>
 
-      <!-- Section for Tests -->
-      <h2>Tests</h2>
-      <table border="1">
-        <thead>
-          <tr>
-            <th>Test</th>
-            <th>Weight</th>
-            <th>Grade</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr>
-            <td>Test 1</td>
-            <td><input type="number" min="0" max="100" /></td>
-            <td><input type="number" min="0" max="100" v-model="assessments.Tests[0]" /></td>
-          </tr>
-          <tr>
-            <td>Test 2</td>
-            <td><input type="number" min="0" max="100" /></td>
-            <td><input type="number" min="0" max="100" v-model="assessments.Tests[1]" /></td>
-          </tr>
-        </tbody>
-      </table>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Grade Calculator</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue@2"></script>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            max-width: 800px;
+            margin: auto;
+        }
+        header,
+        footer {
+            background-color: #f4f4f4;
+            padding: 1rem;
+            text-align: center;
+        }
 
-      <!-- Section for Homeworks -->
-      <h2>Homeworks</h2>
-      <table border="1">
-        <thead>
-          <tr>
-            <th>Homework</th>
-            <th>Weight</th>
-            <th>Grade</th>
-          </tr>
-        </thead>
-        <tbody id="homework-list">
-          <tr v-for="(homework, index) in assessments.homeworks" :key="index">
-            <td>Homework {{ index + 1 }}</td>
-            <td><input type="number" min="0" max="100" /></td>
-            <td><input type="number" min="0" max="100" v-model="assessments.homeworks[index]" /></td>
-          </tr>
-        </tbody>
-      </table>
-      <button @click="addHomework">Add Homework</button>
+        main {
+            padding: 2rem;
+        }
 
-      <!-- Section for Project -->
-      <h2>Project</h2>
-      <table border="1">
-        <thead>
-          <tr>
-            <th>Project</th>
-            <th>Weight</th>
-            <th>Grade</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr>
-            <td>Group Project</td>
-            <td><input type="number" min="0" max="100" /></td>
-            <td><input type="number" min="0" max="100" v-model="assessments.project" /></td>
-          </tr>
-        </tbody>
-      </table>
+        .form-group {
+            margin-bottom: 1rem;
+        }
 
-      <!-- Section for Final Exam -->
-      <h2>Final Exam</h2>
-      <table border="1">
-        <thead>
-          <tr>
-            <th>Final Exam</th>
-            <th>Weight</th>
-            <th>Grade</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr>
-            <td>Final Exam</td>
-            <td><input type="number" min="0" max="100" /></td>
-            <td><input type="number" min="0" max="100" v-model="assessments.FExam" /></td>
-          </tr>
-        </tbody>
-      </table>
-
-      <!-- Output Section -->
-      <div>
-        Projected class grade: {{ calculatedGrade }}
-      </div>
-    </div>
-  </body>
-</html>
+        .form-group label {
 
 
 
