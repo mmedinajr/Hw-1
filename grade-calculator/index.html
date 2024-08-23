@@ -64,7 +64,7 @@
     </style>
   </head>
   <body>
-    <div class="container">
+    <div id="grade_calc" class="container">
       <h1>Calculate Overall Grade</h1>
 
       <!-- Section for Tests -->
@@ -81,12 +81,16 @@
           <tr>
             <td class="input-cell">Test 1</td>
             <td class="input-cell"><input type="number" min="0" max="100" /></td>
-            <td class="input-cell"><input type="number" min="0" max="100" /></td>
+            <td class="input-cell">
+              <input type="number" min="0" max="100" v-model="assessments.Tests[0]" />
+            </td>
           </tr>
           <tr>
             <td class="input-cell">Test 2</td>
             <td class="input-cell"><input type="number" min="0" max="100" /></td>
-            <td class="input-cell"><input type="number" min="0" max="100" /></td>
+            <td class="input-cell">
+              <input type="number" min="0" max="100" v-model="assessments.Tests[1]" />
+            </td>
           </tr>
         </tbody>
       </table>
@@ -102,14 +106,16 @@
           </tr>
         </thead>
         <tbody id="homework-list">
-          <tr>
-            <td class="input-cell">Homework 1</td>
+          <tr v-for="(homework, index) in assessments.homeworks" :key="index">
+            <td class="input-cell">Homework {{ index + 1 }}</td>
             <td class="input-cell"><input type="number" min="0" max="100" /></td>
-            <td class="input-cell"><input type="number" min="0" max="100" /></td>
+            <td class="input-cell">
+              <input type="number" min="0" max="100" v-model="assessments.homeworks[index]" />
+            </td>
           </tr>
         </tbody>
       </table>
-      <button onclick="addHomework()">Add Homework</button>
+      <button @click="addHomework">Add Homework</button>
 
       <!-- Section for Project -->
       <div class="section-title">Project</div>
@@ -125,7 +131,9 @@
           <tr>
             <td class="input-cell">Group Project</td>
             <td class="input-cell"><input type="number" min="0" max="100" /></td>
-            <td class="input-cell"><input type="number" min="0" max="100" /></td>
+            <td class="input-cell">
+              <input type="number" min="0" max="100" v-model="assessments.project" />
+            </td>
           </tr>
         </tbody>
       </table>
@@ -144,30 +152,66 @@
           <tr>
             <td class="input-cell">Final Exam</td>
             <td class="input-cell"><input type="number" min="0" max="100" /></td>
-            <td class="input-cell"><input type="number" min="0" max="100" /></td>
+            <td class="input-cell">
+              <input type="number" min="0" max="100" v-model="assessments.FExam" />
+            </td>
           </tr>
         </tbody>
       </table>
 
       <!-- Output Section -->
       <div class="output">
-        Projected class grade: <span id="projected-grade">0</span>
+        Projected class grade: {{ calculatedGrade }}
       </div>
     </div>
 
-    <script>
-      function addHomework() {
-        const homeworkList = document.getElementById('homework-list');
-        const homeworkCount = homeworkList.getElementsByTagName('tr').length + 1;
+    <script type="module">
+      import { createApp } from "https://mavue.mavo.io/mavue.js";
 
-        const newRow = document.createElement('tr');
-        newRow.innerHTML = `
-          <td class="input-cell">Homework ${homeworkCount}</td>
-          <td class="input-cell"><input type="number" min="0" max="100" /></td>
-          <td class="input-cell"><input type="number" min="0" max="100" /></td>
-        `;
-        homeworkList.appendChild(newRow);
-      }
+      let app = createApp(
+        {
+          data: {
+            assessments: {
+              project: null,
+              prgmSet: null,
+              Tests: [null, null],
+              FExam: null,
+              homeworks: [null],
+            },
+          },
+
+          computed: {
+            calculatedGrade() {
+              let p = this.assessments;
+              return (
+                0.25 * p.project + 0.05 * p.prgmSet + 0.25 * this.homeworkAverage
+              );
+            },
+
+            homeworkAverage() {
+              let done = 0;
+              let sum = 0;
+
+              for (let hw of this.assessments.homeworks) {
+                if (hw >= 0) {
+                  sum += hw;
+                  done++;
+                }
+              }
+
+              return sum / done;
+            },
+          },
+
+          methods: {
+            addHomework() {
+              this.assessments.homeworks.push(null);
+            },
+          },
+        },
+        "#grade_calc"
+      );
     </script>
   </body>
-<
+</html>
+
