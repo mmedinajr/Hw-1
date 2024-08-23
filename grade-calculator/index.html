@@ -5,7 +5,6 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>CMPS3141 Grading Calculator</title>
-    <script src="index.js" type="module"></script>
     <style>
       body {
         font-family: Arial, sans-serif;
@@ -48,11 +47,28 @@
       .input-cell {
         width: 33%;
       }
+
+      .section-title {
+        font-size: 18px;
+        margin-top: 20px;
+        font-weight: bold;
+        color: #009688;
+      }
+
+      .output {
+        margin-top: 20px;
+        font-size: 20px;
+        font-weight: bold;
+        color: #333;
+      }
     </style>
   </head>
   <body>
     <div class="container">
-      <h1>Calculate overall grade</h1>
+      <h1>Calculate Overall Grade</h1>
+
+      <!-- Section for Tests -->
+      <div class="section-title">Tests</div>
       <table>
         <thead>
           <tr>
@@ -63,40 +79,95 @@
         </thead>
         <tbody>
           <tr>
-            <td class="input-cell">
-              <input type="number" min="0" max="100" />
-            </td>
-            <td class="input-cell">
-              <input type="number" min="0" max="100" />
-            </td>
-            <td class="input-cell">
-              <input type="number" min="0" max="100" />
-            </td>
+            <td class="input-cell">Test 1</td>
+            <td class="input-cell"><input type="number" min="0" max="100" /></td>
+            <td class="input-cell"><input type="number" min="0" max="100" /></td>
           </tr>
           <tr>
-            <td class="input-cell">
-              <input type="number" min="0" max="100" />
-            </td>
-            <td class="input-cell">
-              <input type="number" min="0" max="100" />
-            </td>
-            <td class="input-cell">
-              <input type="number" min="0" max="100" />
-            </td>
-          </tr>
-          <tr>
-            <td class="input-cell">
-              <input type="number" min="0" max="100" />
-            </td>
-            <td class="input-cell">
-              <input type="number" min="0" max="100" />
-            </td>
-            <td class="input-cell">
-              <input type="number" min="0" max="100" />
-            </td>
+            <td class="input-cell">Test 2</td>
+            <td class="input-cell"><input type="number" min="0" max="100" /></td>
+            <td class="input-cell"><input type="number" min="0" max="100" /></td>
           </tr>
         </tbody>
       </table>
+
+      <!-- Section for Homeworks -->
+      <div class="section-title">Homeworks</div>
+      <table>
+        <thead>
+          <tr>
+            <th>Homework</th>
+            <th>Weight</th>
+            <th>Grade</th>
+          </tr>
+        </thead>
+        <tbody id="homework-list">
+          <tr>
+            <td class="input-cell">Homework 1</td>
+            <td class="input-cell"><input type="number" min="0" max="100" /></td>
+            <td class="input-cell"><input type="number" min="0" max="100" /></td>
+          </tr>
+        </tbody>
+      </table>
+      <button onclick="addHomework()">Add Homework</button>
+
+      <!-- Section for Project -->
+      <div class="section-title">Project</div>
+      <table>
+        <thead>
+          <tr>
+            <th>Project</th>
+            <th>Weight</th>
+            <th>Grade</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td class="input-cell">Group Project</td>
+            <td class="input-cell"><input type="number" min="0" max="100" /></td>
+            <td class="input-cell"><input type="number" min="0" max="100" /></td>
+          </tr>
+        </tbody>
+      </table>
+
+      <!-- Section for Final Exam -->
+      <div class="section-title">Final Exam</div>
+      <table>
+        <thead>
+          <tr>
+            <th>Final Exam</th>
+            <th>Weight</th>
+            <th>Grade</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td class="input-cell">Final Exam</td>
+            <td class="input-cell"><input type="number" min="0" max="100" /></td>
+            <td class="input-cell"><input type="number" min="0" max="100" /></td>
+          </tr>
+        </tbody>
+      </table>
+
+      <!-- Output Section -->
+      <div class="output">
+        Projected class grade: <span id="projected-grade">0</span>
+      </div>
     </div>
+
+    <script>
+      function addHomework() {
+        const homeworkList = document.getElementById('homework-list');
+        const homeworkCount = homeworkList.getElementsByTagName('tr').length + 1;
+
+        const newRow = document.createElement('tr');
+        newRow.innerHTML = `
+          <td class="input-cell">Homework ${homeworkCount}</td>
+          <td class="input-cell"><input type="number" min="0" max="100" /></td>
+          <td class="input-cell"><input type="number" min="0" max="100" /></td>
+        `;
+        homeworkList.appendChild(newRow);
+      }
+    </script>
   </body>
-</html>
+<
