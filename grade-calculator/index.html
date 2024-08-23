@@ -1,62 +1,102 @@
-<!--CMPS3141-HCI - AS1-24S1
-Collaborators:
-Date:
- -->
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>CMPS3141 Grading Calculator</title>
+    <script src="index.js" type="module"></script>
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+      }
 
- <!DOCTYPE html>
- <html lang="en">
-   <head>
-     <meta charset="UTF-8" />
-     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-     <title>CMPS3141 Grading Calculator</title>
-     <script src="index.js" type="module"></script>
-   </head>
-   <body>
-     <div id="grade_calc">
-       <!-- Project Grade -->
-       <div>
-         Project Grade:
-         <input type="number" min="0" max="100" v-model="assessments.project" />
-         / 100
-       </div>
- 
-       <!-- Homework Grades -->
-       <div>
-         {{ homeworks.length }} homeworks:
-         <div v-for="(hw, index) in homeworks" :key="index">
-           Homework {{ index + 1 }}:
-           <input type="number" min="0" max="100" v-model="homeworks[index]" />
-           / 100
-         </div>
-       </div>
-       <button @click="addHomework()"onclick="console.log('Button clicked')">Add homework</button>
-       >Add homework</button>
- 
-       <!-- Program Set Grade -->
-       <div>
-         Program Set Grade:
-         <input type="number" min="0" max="100" v-model="assessments.prgmSet" />
-         / 100
-       </div>
- 
-       <!-- Test Grade -->
-       <div>
-         Test Grade:
-         <input type="number" min="0" max="100" v-model="assessments.Test" />
-         / 100
-       </div>
- 
-       <!-- Final Exam Grade -->
-       <div>
-         Final Exam Grade:
-         <input type="number" min="0" max="100" v-model="assessments.FExam" />
-         / 100
-       </div>
- 
-       <!-- Projected Class Grade -->
-       <div>Projected class grade: {{ calculatedGrade }}</div>
-     </div>
-   </body>
- </html>
- 
+      .container {
+        width: 100%;
+        max-width: 600px;
+        margin: 0 auto;
+        padding: 20px;
+        border: 1px solid #ccc;
+        background-color: #f4f4f4;
+      }
+
+      h1 {
+        background-color: #009688;
+        color: white;
+        padding: 10px;
+        text-align: center;
+        font-size: 24px;
+        font-weight: bold;
+      }
+
+      table {
+        width: 100%;
+        border-collapse: collapse;
+        margin-top: 20px;
+      }
+
+      th, td {
+        padding: 10px;
+        text-align: left;
+        border: 1px solid #ddd;
+      }
+
+      th {
+        font-weight: bold;
+      }
+
+      .input-cell {
+        width: 33%;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <h1>Calculate overall grade</h1>
+      <table>
+        <thead>
+          <tr>
+            <th>Test</th>
+            <th>Weight</th>
+            <th>Grade</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td class="input-cell">
+              <input type="number" min="0" max="100" />
+            </td>
+            <td class="input-cell">
+              <input type="number" min="0" max="100" />
+            </td>
+            <td class="input-cell">
+              <input type="number" min="0" max="100" />
+            </td>
+          </tr>
+          <tr>
+            <td class="input-cell">
+              <input type="number" min="0" max="100" />
+            </td>
+            <td class="input-cell">
+              <input type="number" min="0" max="100" />
+            </td>
+            <td class="input-cell">
+              <input type="number" min="0" max="100" />
+            </td>
+          </tr>
+          <tr>
+            <td class="input-cell">
+              <input type="number" min="0" max="100" />
+            </td>
+            <td class="input-cell">
+              <input type="number" min="0" max="100" />
+            </td>
+            <td class="input-cell">
+              <input type="number" min="0" max="100" />
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </body>
+</html>
