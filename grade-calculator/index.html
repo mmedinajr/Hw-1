@@ -2,73 +2,15 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>CMPS3141 Grading Calculator</title>
-    <style>
-      body {
-        font-family: Arial, sans-serif;
-      }
-
-      .container {
-        width: 100%;
-        max-width: 600px;
-        margin: 0 auto;
-        padding: 20px;
-        border: 1px solid #ccc;
-        background-color: #f4f4f4;
-      }
-
-      h1 {
-        background-color: #009688;
-        color: white;
-        padding: 10px;
-        text-align: center;
-        font-size: 24px;
-        font-weight: bold;
-      }
-
-      table {
-        width: 100%;
-        border-collapse: collapse;
-        margin-top: 20px;
-      }
-
-      th, td {
-        padding: 10px;
-        text-align: left;
-        border: 1px solid #ddd;
-      }
-
-      th {
-        font-weight: bold;
-      }
-
-      .input-cell {
-        width: 33%;
-      }
-
-      .section-title {
-        font-size: 18px;
-        margin-top: 20px;
-        font-weight: bold;
-        color: #009688;
-      }
-
-      .output {
-        margin-top: 20px;
-        font-size: 20px;
-        font-weight: bold;
-        color: #333;
-      }
-    </style>
+    <title>Minimalist Grading Calculator</title>
   </head>
   <body>
-    <div id="grade_calc" class="container">
+    <div id="grade_calc">
       <h1>Calculate Overall Grade</h1>
 
       <!-- Section for Tests -->
-      <div class="section-title">Tests</div>
+      <div>Tests</div>
       <table>
         <thead>
           <tr>
@@ -79,24 +21,20 @@
         </thead>
         <tbody>
           <tr>
-            <td class="input-cell">Test 1</td>
-            <td class="input-cell"><input type="number" min="0" max="100" /></td>
-            <td class="input-cell">
-              <input type="number" min="0" max="100" v-model="assessments.Tests[0]" />
-            </td>
+            <td>Test 1</td>
+            <td><input type="number" min="0" max="100" /></td>
+            <td><input type="number" min="0" max="100" v-model="assessments.Tests[0]" /></td>
           </tr>
           <tr>
-            <td class="input-cell">Test 2</td>
-            <td class="input-cell"><input type="number" min="0" max="100" /></td>
-            <td class="input-cell">
-              <input type="number" min="0" max="100" v-model="assessments.Tests[1]" />
-            </td>
+            <td>Test 2</td>
+            <td><input type="number" min="0" max="100" /></td>
+            <td><input type="number" min="0" max="100" v-model="assessments.Tests[1]" /></td>
           </tr>
         </tbody>
       </table>
 
       <!-- Section for Homeworks -->
-      <div class="section-title">Homeworks</div>
+      <div>Homeworks</div>
       <table>
         <thead>
           <tr>
@@ -107,18 +45,16 @@
         </thead>
         <tbody id="homework-list">
           <tr v-for="(homework, index) in assessments.homeworks" :key="index">
-            <td class="input-cell">Homework {{ index + 1 }}</td>
-            <td class="input-cell"><input type="number" min="0" max="100" /></td>
-            <td class="input-cell">
-              <input type="number" min="0" max="100" v-model="assessments.homeworks[index]" />
-            </td>
+            <td>Homework {{ index + 1 }}</td>
+            <td><input type="number" min="0" max="100" /></td>
+            <td><input type="number" min="0" max="100" v-model="assessments.homeworks[index]" /></td>
           </tr>
         </tbody>
       </table>
       <button @click="addHomework">Add Homework</button>
 
       <!-- Section for Project -->
-      <div class="section-title">Project</div>
+      <div>Project</div>
       <table>
         <thead>
           <tr>
@@ -129,17 +65,15 @@
         </thead>
         <tbody>
           <tr>
-            <td class="input-cell">Group Project</td>
-            <td class="input-cell"><input type="number" min="0" max="100" /></td>
-            <td class="input-cell">
-              <input type="number" min="0" max="100" v-model="assessments.project" />
-            </td>
+            <td>Group Project</td>
+            <td><input type="number" min="0" max="100" /></td>
+            <td><input type="number" min="0" max="100" v-model="assessments.project" /></td>
           </tr>
         </tbody>
       </table>
 
       <!-- Section for Final Exam -->
-      <div class="section-title">Final Exam</div>
+      <div>Final Exam</div>
       <table>
         <thead>
           <tr>
@@ -150,17 +84,15 @@
         </thead>
         <tbody>
           <tr>
-            <td class="input-cell">Final Exam</td>
-            <td class="input-cell"><input type="number" min="0" max="100" /></td>
-            <td class="input-cell">
-              <input type="number" min="0" max="100" v-model="assessments.FExam" />
-            </td>
+            <td>Final Exam</td>
+            <td><input type="number" min="0" max="100" /></td>
+            <td><input type="number" min="0" max="100" v-model="assessments.FExam" /></td>
           </tr>
         </tbody>
       </table>
 
       <!-- Output Section -->
-      <div class="output">
+      <div>
         Projected class grade: {{ calculatedGrade }}
       </div>
     </div>
@@ -214,4 +146,5 @@
     </script>
   </body>
 </html>
+
 
