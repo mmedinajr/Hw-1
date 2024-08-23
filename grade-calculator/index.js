@@ -54,8 +54,8 @@ let app = createApp(
        * Does not prevent more homeworks than 5 from being added.
        */
       addHomework() {
-        console.log("Add homework button clicked");
-        this.homeworks.push(null);
+        
+        this.assessments.homeworks.push(null);
       },
     },
   },
