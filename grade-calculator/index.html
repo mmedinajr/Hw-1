@@ -30,6 +30,159 @@
         }
 
         .form-group label {
+            display: block;
+            margin-bottom: 0.5rem;
+        }
 
+        .form-group input {
+            width: 100%;
+            padding: 0.5rem;
+            box-sizing: border-box;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+        }
 
+        .form-group button {
+            padding: 0.5rem 1rem;
+            background-color: #007bff;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
 
+        .form-group button:hover {
+            background-color: #0056b3;
+        }
+
+        .output {
+            margin-top: 1rem;
+            font-size: 1.25rem;
+            font-weight: bold;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="app">
+        <header>
+            <h1>CMPS3141 Grading Calculator</h1>
+        </header>
+        <main>
+            <h3> Test Grades </h3>
+            <div class="form-group">
+                <label for="test1">Test 1 (Unit 1):</label>
+                <input type="number" v-model.number="test1" min="0" max="100" placeholder="Enter grade for Test 1">
+            </div>
+            <div class="form-group">
+                <label for="test2">Test 2 (Unit 2):</label>
+                <input type="number" v-model.number="test2" min="0" max="100" placeholder="Enter grade for Test 2">
+            </div>
+
+            <h3> Homework Grades </h3>
+
+            <div class="form-group">
+                <label for="homework1">Assignment #1 (AS1): HTML:</label>
+                <input type="text" v-model="homework1" placeholder="Enter homework grade">
+            </div>
+
+            <div class="form-group">
+                <label for="homework2">Assignment #2 (AS2): CSS:</label>
+                <input type="text" v-model="homework2" placeholder="Enter homework grade">
+            </div>
+
+            
+            <div class="form-group">
+                <label for="homework3">Assignment #3 (AS3): Web App w/ VueJs or Mavo:</label>
+                <input type="text" v-model="homework3" placeholder="Enter homework grade">
+            </div>
+
+            <div class="form-group">
+                <label for="homework4">Assignment #4 (AS4): UI Evaluation:</label>
+                <input type="text" v-model="homework4" placeholder="Enter homework grade">
+            </div>
+           
+            <div class="form-group">
+                <label for="homework5">Assignment #5 (AS5): Paper Prototyping & User Test:</label>
+                <input type="text" v-model="homework5" placeholder="Enter homework grade">
+            </div>
+            
+            <div class="form-group">
+                <label for="homework6">Assignment #6 (AS6): UI Design</label>
+                <input type="text" v-model="homework6" placeholder="Enter homework grade">
+            </div>
+
+            <h3> Project Group Grade </h3>
+
+            <div class="form-group">
+                <label for="project">Project Group Grade:</label>
+                <input type="number" v-model.number="project" min="0" max="100" placeholder="Enter project grade">
+            </div>
+
+            <h3> Final Exam Grade </h3>
+
+            <div class="form-group">
+                <label for="final">Final Exam Grade:</label>
+                <input type="number" v-model.number="finalExam" min="0" max="100" placeholder="Enter final exam grade">
+            </div>
+
+            <div class="form-group">
+                <button @click="calculateGrade">Calculate Final Grade</button>
+            </div>
+
+            <div class="output" v-if="finalGrade !== null">
+                Your Course Final Grade: {{ finalGrade.toFixed(2) }}
+            </div>
+
+        </main>
+        <footer>
+            <p>&copy; 2024 CMPS3141 Grading Calculator</p>
+        </footer>
+    </div>
+
+    <script type="text/javascript">
+        new Vue({
+            el: '#app',
+            data: {
+                test1: null,
+                test2: null,
+
+                homework1: null,
+                homework2: null,
+                homework3: null,
+                homework4: null,
+                homework5: null,
+                homework6: null,
+                
+                project: null,
+                finalExam: null,
+                finalGrade: null
+            },
+            methods: {
+                calculateGrade() {
+                    let test1Grade = this.test1 || 0;
+                    let test2Grade = this.test2 || 0;
+                    let projectGrade = this.project || 0;
+                    let finalExamGrade = this.finalExam || 0;
+
+                    // Parse homework grades
+                    let homeworkGrades = this.homeworks.split(',').map(Number).filter(n => !isNaN(n));
+                    let homeworkAverage = homeworkGrades.length ? homeworkGrades.reduce((a, b) => a + b) / homeworkGrades.length : 0;
+
+                    // Calculate final grade
+                    let finalGrade = (
+                        (test1Grade * 0.1) +
+                        (test2Grade * 0.1) +
+                        (homeworkAverage * 0.3) +
+                        (projectGrade * 0.2) +
+                        (finalExamGrade * 0.3)
+                    );
+
+                    this.finalGrade = finalGrade;
+                }
+            }
+        });
+    </script>
+</body>
+
+</html>
